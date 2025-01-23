@@ -40,5 +40,6 @@ int main()
 
     result = nombre_aleatoire(nombreA, nombreB);
     printf("Le nombre genere est %d", result);
+    printf("BRAVO !");
 
 }
