@@ -1,0 +1,44 @@
+void partie(int tableau[], int n)
+{
+    int i;
+
+    /*if(coup < n || coup > n )
+    {
+        printf("COUP MANQUANT : PARTIE FINIE")
+        exit(-1);
+    }
+
+    for (i = 0; i < 16; i++)
+    {
+        if (coup == i) {
+            printf("Vous avez porté un coup à l'indice %d\n", i);
+        }
+
+        if (tableau[i] == 1 && coup == i) {
+            printf("TOUCHE !!!\n");
+        }
+    }
+
+    return 0;
+
+}*/
+
+/*
+void nombre_coup (){
+        // Déclarez un tableau pour stocker les nombres
+    int tableau[100];  // Vous pouvez ajuster la taille du tableau selon vos besoins
+
+    // Demandez à l'utilisateur d'entrer les nombres
+
+    // Utilisez une boucle pour lire les nombres jusqu'à ce que l'utilisateur termine l'entrée
+    int nombre;
+    int nombreElements = 0;
+
+    while (scanf("%d", &nombre) == 1) {
+        tableau[nombreElements] = nombre;
+        nombreElements++;
+    }
+
+    // Affichez le nombre d'éléments dans le tableau
+    printf("Il y a %d chiffres dans le tableau.\n", nombreElements);
+}

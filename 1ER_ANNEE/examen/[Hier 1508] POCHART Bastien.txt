@@ -1,0 +1,237 @@
+[Hier 15:08] POCHART Bastien
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+ 
+int best(int *Tab, int n, int size);
+int first(int *Tab, int n, int size);
+void Tri_Rapide(int *Tab, int g, int d);
+int PartitionL(int *Tab, int g, int d);
+int PartitionHoare(int *Tab, int g, int d);
+ 
+ 
+int main()
+{
+    srand(time(NULL));
+    int n=100000;
+   
+    int *Tab=(int*)malloc(n*sizeof(int));
+    for(int i=0; i<n;i++)
+    {
+        Tab[i]=rand()%100;
+    }
+ 
+   
+   
+    int size=1000;
+    int tkt=best(Tab, n, size);
+    printf("\n nb de box BEST: %d\n", tkt);
+    Tri_Rapide(Tab,0,n-1);
+    int result =best(Tab, n, size);
+    printf("\n nb de box BEstV2: %d\n", result);
+    printf("\n V2\n");
+    /*int *TabD=(int*)malloc(n*sizeof(int));
+    for(int i=0; i<n;i++)
+    {
+        Tab[i]=rand()%1042;
+    }
+   
+    tkt=best(TabD, n, size);
+    printf("\n nb de box BEST: %d\n", tkt);
+    result =first(TabD, n, size);
+    printf("\n nb de box FIRST: %d\n", result);*/
+    return 0;
+}
+ 
+ 
+int first(int *Tab, int n, int size)
+{
+    int nbbox=0;
+    int tempbox;
+    for(int i=0;i<n;i++)
+    {
+        if(Tab[i]!=-1)
+        {
+            nbbox++;
+            printf("\n BOX: %d ",Tab[i]);
+            tempbox=size-Tab[i];
+            Tab[i]=-1;
+        }
+        for(int j=i+1;j<n;j++)
+        {
+            if(tempbox==0)
+            {
+                break;
+            }
+            if(tempbox-Tab[j]>=0 && Tab[j]!=-1)
+            {
+                printf("%d ", Tab[j]);
+                tempbox=tempbox-Tab[j];
+                Tab[j]=-1;
+            }
+        }
+    }
+    return nbbox;
+}
+ 
+int best(int *Tab, int n, int size)
+{
+    int nbbox=0;
+    int *box=malloc(n*sizeof(int));
+    int besttemp;
+    int ibest;
+    for(int i=0;i<n;i++)
+    {
+        box[i]=size;
+    }
+    for(int i=0;i<n;i++)
+    {
+        besttemp=size+1;
+        ibest=-1;
+        for(int j=0;j<nbbox;j++)
+        {
+            if(box[j]>=Tab[i] && box[j]-Tab[i]<besttemp)
+            {
+                besttemp=box[j]-Tab[i];
+                ibest=j;
+            }
+ 
+        }
+        if(ibest!=-1)
+        {
+            box[ibest]=box[ibest]-Tab[i];
+        }
+        else{
+            box[nbbox]=size-Tab[i];
+            nbbox++;
+        }
+       
+    }
+    /*
+    for(int i=0;i<nbbox;i++)
+    {
+       
+        printf("\n BOX %d: %d",i+1, box[i]);
+    }*/
+ 
+    free(box);
+    return nbbox;
+}
+ 
+ 
+ 
+ 
+void Tri_Rapide(int *Tab, int g, int d)
+{
+    if(g<d)
+    {
+       
+        int m=PartitionHoare(Tab, g, d);
+        Tri_Rapide(Tab, g, m);
+        Tri_Rapide(Tab, m+1, d);
+    }
+}
+ 
+int PartitionL(int *Tab, int g, int d)
+{
+    int temp;
+    int p=Tab[d];
+    int i=g-1;
+    for(int j=g;j<=(d-1);j++)
+    {
+        if(Tab[j]<=p)
+        {
+            i++;
+            temp=Tab[i];
+            Tab[i]=Tab[j];
+            Tab[j]=temp;
+           
+        }
+    }
+    temp=Tab[i+1];
+    Tab[i+1]=Tab[d];
+    Tab[d]=temp;
+    return i+1;
+}
+ 
+int PartitionHoare(int *Tab, int g, int d)
+{
+    int p=Tab[g];
+    int temp;
+    int i=g-1;
+    int j=d+1;
+    while(1)
+    {
+        i=i+1;
+        while(Tab[i]>p)
+        {
+            i=i+1;
+        }
+        j=j-1;
+        while(Tab[j]<p)
+        {
+            j=j-1;
+        }
+ 
+        if(i>=j)
+        {
+            return j;
+           
+        }
+       
+        temp=Tab[i];
+        Tab[i]=Tab[j];
+        Tab[j]=temp;
+       
+       
+    }
+ 
+}
+Dispose d’un menu contextuelComposerParagraphe
+[Hier 15:09] POCHART Bastien
+#include <stdio.h>
+#include <stdlib.h>
+ 
+void rendu(int rendre, int *Sm, int *caisse, int *Rd);
+ 
+int main()
+{
+    int Sm[]={200,100,50,20,10,5,2,1};
+    int caisse[]={5,10,20,50,100,200,500,1000};
+    int Rd[]={0,0,0,0,0,0,0,0};
+    int n=8;
+    rendu(140300, Sm, caisse, Rd);
+    printf("\nRendre:");
+    for(int i=0;i<n;i++)
+    {
+        printf(" %d ",Rd[i]);
+    }
+    printf("\nCaisse:");
+    for(int i=0;i<n;i++)
+    {
+        printf(" %d ",caisse[i]);
+    }
+    return 0;
+}
+ 
+void rendu(int rendre, int *Sm, int *caisse, int *Rd)
+{
+    int i=0;
+    while(i<8)
+    {
+       
+        while(Sm[i]<=rendre && caisse[i]!=0)
+        {
+            Rd[i]=(Rd[i]+1);
+            caisse[i]=caisse[i]-1;
+            rendre=(rendre-Sm[i]);
+        }
+       
+        if(i==7 && caisse[i]==0 && rendre!=0)
+        {
+            printf("\n ----> MANQUE DE THUNE <----- \n");
+        }
+        i=i+1;
+    }
+   
+}

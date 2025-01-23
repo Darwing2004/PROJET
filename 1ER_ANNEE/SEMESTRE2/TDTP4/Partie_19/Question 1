@@ -1,0 +1,2 @@
+Question(s): Quelles sont les sous-séquences strictement croissantes dans le tableau T AB ?
+  Les sous séquences de ce tableau sont : "1, 2, 5", "3, 12, 25", "4, 7, 24, 28, 32", "11, 14"

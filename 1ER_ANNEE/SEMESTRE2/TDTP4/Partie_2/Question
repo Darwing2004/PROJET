@@ -1,0 +1,9 @@
+1. L'espace de recherche pour le problème de la recherche de la racine carée est [0;n]
+
+2. [a;b] e -> marge d'erreur -> (b - a) > e
+Tant que b - a > e, alors il y aura une nouvelle itération
+
+3. m * m < n  
+10.5
+8.5
+8.48

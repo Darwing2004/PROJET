@@ -1,0 +1,138 @@
+int main()
+{
+    // VARIABLES
+    int n = 1000;
+    char nbr_A[n];
+    char nbr_B[n];
+    char espace[n];
+    const char *numberStrA;
+    const char *numberStrB;
+
+    // BigInt
+    BigInt nbrA;
+    BigInt nbrB;
+    BigInt resultAdd;
+    BigInt resultSou;
+    BigInt resultMult;
+
+    // ADDITION
+    printf("\n");
+    NombreBigInt(nbr_A, n);
+    NombreBigInt(nbr_B, n);
+
+    numberStrA = nbr_A;
+    numberStrB = nbr_B;
+
+    initializeBigIntFromString(&nbrA, numberStrA, BASE);
+    initializeBigIntFromString(&nbrB, numberStrB, BASE);
+
+    resultAdd = Addition(&nbrA, &nbrB);
+
+    printf("A=");
+    printf("%s\n", nbr_A);
+    printf("B=");
+    printf("%s\n", nbr_B);
+    printf("ADDITION=");
+    printBigInt(&resultAdd);
+
+    // ENTRELIGNE
+    scanf("%[^\n]\n", espace);
+    scanf("%[^\n]\n", espace);
+
+    // SOUSTRACTION
+    printf("\n");
+    NombreBigInt(nbr_A, n);
+    NombreBigInt(nbr_B, n);
+
+    numberStrA = nbr_A;
+    numberStrB = nbr_B;
+
+    initializeBigIntFromString(&nbrA, numberStrA, BASE);
+    initializeBigIntFromString(&nbrB, numberStrB, BASE);
+
+    resultSou = Soustraction(&nbrA, &nbrB);
+
+    printf("A=");
+    printf("%s\n", nbr_A);
+    printf("B=");
+    printf("%s\n", nbr_B);
+    printf("SOUSTRACTION=");
+    printBigInt(&resultSou);
+
+    // ENTRELIGNE
+    scanf("%[^\n]\n", espace);
+    scanf("%[^\n]\n", espace);
+
+    // EGAL
+    printf("\n");
+    NombreBigInt(nbr_A, n);
+    NombreBigInt(nbr_B, n);
+
+    numberStrA = nbr_A;
+    numberStrB = nbr_B;
+
+    initializeBigIntFromString(&nbrA, numberStrA, BASE);
+    initializeBigIntFromString(&nbrB, numberStrB, BASE);
+
+    printf("A=");
+    printf("%s\n", nbr_A);
+    printf("B=");
+    printf("%s\n", nbr_B);
+    printf("EGAL=");
+    printf("%s\n", egal(&nbrA, &nbrB) ? "true" : "false");
+
+    // ENTRELIGNE
+    scanf("%[^\n]\n", espace);
+    scanf("%[^\n]\n", espace);
+
+    // INFERIEUR
+    printf("\n");
+    NombreBigInt(nbr_A, n);
+    NombreBigInt(nbr_B, n);
+
+    numberStrA = nbr_A;
+    numberStrB = nbr_B;
+
+    initializeBigIntFromString(&nbrA, numberStrA, BASE);
+    initializeBigIntFromString(&nbrB, numberStrB, BASE);
+
+    printf("A=");
+    printf("%s\n", nbr_A);
+    printf("B=");
+    printf("%s\n", nbr_B);
+    printf("INFERIEUR=");
+    printf("%s\n", inferieur(&nbrA, &nbrB) ? "true" : "false");
+
+    // ENTRELIGNE
+    scanf("%[^\n]\n", espace);
+    scanf("%[^\n]\n", espace);
+
+    // MULTIPLICATION
+    printf("\n");
+    NombreBigInt(nbr_A, n);
+    NombreBigInt(nbr_B, n);
+
+    numberStrA = nbr_A;
+    numberStrB = nbr_B;
+
+    initializeBigIntFromString(&nbrA, numberStrA, BASE);
+    initializeBigIntFromString(&nbrB, numberStrB, BASE);
+
+    resultMult = Multiplication(&nbrA, &nbrB);
+
+    printf("A=");
+    printf("%s\n", nbr_A);
+    printf("B=");
+    printf("%s\n", nbr_B);
+    printf("MULTIPLICATIONNAIVE=");
+    printBigInt(&resultMult);
+
+    // Libération de la mémoire
+    free(nbrA.digits);
+    free(nbrB.digits);
+    free(resultAdd.digits);
+    free(resultSou.digits);
+    free(resultMult.digits);
+
+    return EXIT_SUCCESS;
+}

@@ -1,0 +1,4 @@
+Retrouver les valeurs en base 10 des nombres (101010)2 et (7DB)16
+
+101010 => 1*2^6+1*2^4+1*2^2= 84
+7DB => 7*16^2+13*16^1+11 = 2011

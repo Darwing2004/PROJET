@@ -1,0 +1,15 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "exercice2_1.C": "cpp",
+        "string.h": "c",
+        "limits": "c",
+        "numbers": "c",
+        "definiton_fourmis.h": "c",
+        "time.h": "c",
+        "definition_fourmis.h": "c",
+        "stdbool.h": "c"
+    }
+}
